@@ -19,7 +19,7 @@ class DataJobDeskController extends Controller
          $data['title'] = 'Data Job Desk';
          $data['sub_menu'] = '0';
 
-        return view('admin.dashboard.dashboard', $data);
+        return view('admin.datamaster.datajobdesk', $data);
     }
 
     /**

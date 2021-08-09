@@ -258,17 +258,7 @@
                         <i class="{{$sb->icon}}"></i>
                         <p>{{$sb->title}}</p>
 
-                        @if ($sb->title == 'Pengajuan')
-                          @if ($ceknotif != 0)
-                      <span class="badge badge-success">{{$ceknotif}}</span>
-                          @endif
-                        @endif
-                        @if ($sb->title == 'Angsuran')
-                          @if ($cekangsuran != 0)
-                      <span class="badge badge-success">{{$cekangsuran}}</span>
-                          @endif
-                        @endif
-                      </a>
+                        </a>
                     </li>
             @endif
 
