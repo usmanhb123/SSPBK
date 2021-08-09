@@ -66,22 +66,15 @@
                                         <form>
                                             <div class="row">
                                                 <div class="col-sm-12">
-                                                    <div class="form-group form-group-default">
-                                                        <label>Name</label>
-                                                        <input id="addName" type="text" class="form-control" placeholder="fill name">
+                                                    <div class="form-group form-floating-label">
+                                                        <label for="inputFloatingLabel">Posisi Pekerjaan :</label>
+                                                        <input id="inputFloatingLabel" type="text" name="nama_posisi" class="form-control input-border-bottom" required="">
+                                                        
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6 pr-0">
-                                                    <div class="form-group form-group-default">
-                                                        <label>Position</label>
-                                                        <input id="addPosition" type="text" class="form-control" placeholder="fill position">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group form-group-default">
-                                                        <label>Office</label>
-                                                        <input id="addOffice" type="text" class="form-control" placeholder="fill office">
-                                                    </div>
+                                                <div class="col-sm-12 form-group form-floating-label">
+                                                    <label for="keterangan" placeholder>Keterangan :</label>
+                                                    <textarea name="keterangan" id="keterangan" cols="30" rows="10" required class="form-control"></textarea>
                                                 </div>
                                             </div>
                                         </form>
@@ -107,7 +100,15 @@
                                 </thead>
                               
                                 <tbody>
-
+                                    @foreach ($table as $no => $item)
+                                        <tr>
+                                            <td>{{$no+1}}</td>
+                                            <td>{{$item->nama_posisi}}</td>
+                                            <td>{{$item->keterangan}}</td>
+                                            <td>{{$item->is_active}}</td>
+                                            <td></td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

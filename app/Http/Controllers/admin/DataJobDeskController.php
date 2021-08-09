@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\Data_job_desk;
 use Illuminate\Http\Request;
 
 class DataJobDeskController extends Controller
@@ -16,9 +17,9 @@ class DataJobDeskController extends Controller
     public function index()
     {
         $data['user'] =  AUTH::user();
-         $data['title'] = 'Data Job Desk';
-         $data['sub_menu'] = '0';
-
+        $data['title'] = 'Data Job Desk';
+        $data['sub_menu'] = '0';
+        $data['table'] = Data_job_desk::all();
         return view('admin.datamaster.datajobdesk', $data);
     }
 
