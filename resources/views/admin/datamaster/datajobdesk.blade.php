@@ -62,7 +62,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p class="small">Create a new row using this form, make sure you fill them all</p>
+                                      
                                         <form>
                                             <div class="row">
                                                 <div class="col-sm-12">
