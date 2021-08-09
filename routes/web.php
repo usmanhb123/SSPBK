@@ -62,6 +62,11 @@ Route::middleware(['admin', 'user'])->group(function () {
 Route::resource('/dashboardadmin', DashboardController::class);
 Route::resource('/dataworksection', DataWorkSectionController::class);
 Route::resource('/mastersoal', MasterSoalController::class);
+Route::post('/mastersoal/addpilihanganda', [MasterSoalController::class, 'pilihanganda']);
+Route::post('/mastersoal/addessay', [MasterSoalController::class, 'essay']);
+Route::post('/mastersoal/addjawabansingkat', [MasterSoalController::class, 'jawabansingkat']);
+Route::get('/mastersoal/{id}/editsoal', [MasterSoalController::class, 'editsoal']);
+Route::get('/mastersoal/{id}/hapussoal', [MasterSoalController::class, 'hapussoal']);
 
 
 
