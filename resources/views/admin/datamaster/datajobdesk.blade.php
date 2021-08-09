@@ -38,7 +38,7 @@
                     <div class="card-header">
                         <div class="d-flex align-items-center">
                             <h4 class="card-title">Daftar Posisi Pekerjaan</h4>
-                            <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
+                            <button class="btn btn-primary btn-sm btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
                                 <i class="fa fa-plus"></i>
                                 Job Desk
                             </button>
@@ -98,6 +98,7 @@
                             <table id="add-row" class="display table table-striped table-hover" >
                                 <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th>Posisi</th>
                                         <th>Keterangan</th>
                                         <th>Is Active</th>
