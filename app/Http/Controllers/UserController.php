@@ -43,7 +43,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'file' => 'image|mimes:jpg,jpeg,png'
+            'file' => 'image|mimes:jpg,jpeg,png,svg'
         ]);
         $file = $request->file('file');
         // isi dengan nama folder tempat kemana file diupload

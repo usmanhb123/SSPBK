@@ -13,7 +13,8 @@ use App\Http\Controllers\menu\SubsubmenuController;
 
 // ADMIN
 use App\Http\Controllers\admin\DashboardController;
-use App\Http\Controllers\admin\DataJobDeskController;
+use App\Http\Controllers\admin\DataWorkSectionController;
+use App\Http\Controllers\admin\MasterSoalController;
 
 // END ADMIN
 
@@ -59,7 +60,8 @@ Route::middleware(['admin', 'user'])->group(function () {
 // Base Route
 
 Route::resource('/dashboardadmin', DashboardController::class);
-Route::resource('/datajobdesk', DataJobDeskController::class);
+Route::resource('/dataworksection', DataWorkSectionController::class);
+Route::resource('/mastersoal', MasterSoalController::class);
 
 
 

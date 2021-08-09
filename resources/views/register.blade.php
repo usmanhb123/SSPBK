@@ -62,6 +62,16 @@
                       @enderror
         </div>
         <div class="form-group">
+     
+												<select class="form-control form-control-user" id="defaultSelect" name="job_desk">
+													<option>Pilih Work Section / Bagian Pekerjaan</option>
+												@foreach ($job_desk as $item)
+                        <option value="{{$item->id}}">{{$item->nama_posisi}}</option>
+                        @endforeach
+													
+												</select>
+        </div>
+        <div class="form-group">
           <input type="email" name="email" id="email" value="{{ old('email') }}" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" required="">
                           @error('email')
                             <span>

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Mail\Peserta;
 use App\Mail\Forgot;
 use App\Models\Users;
+use App\Models\Data_work_section;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Mail;
 
@@ -46,7 +47,8 @@ class AuthController extends Controller
      */
     public function register()
     {
-        return view('register');
+        $data['job_desk'] = Data_work_section::where('is_active', 1)->get();
+        return view('register', $data);
     }
 
     /**
@@ -162,6 +164,7 @@ class AuthController extends Controller
         $user->image =  "user.webp";
         $user->alamat =  $request->alamat;
         $user->telepon =  $request->telepon;
+        $user->data_work_section_id =  $request->job_desk;
         $user->mode_gelap =  0;
         $user->user_role_id =  2;
         $user->is_active =  0;
