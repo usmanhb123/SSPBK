@@ -276,7 +276,7 @@
         </div>
       </div>
     </div>
-@if($title == "Dashboard")
+@if($title == "Dashboard" || $title == "Home")
     <div class="main-panel">
 @else
     <div class="main-panel mt-3">
@@ -310,7 +310,7 @@
             </ul>
           </nav>
           <div class="copyright ml-auto">
-            2021, made with <i class="fa fa-heart heart text-danger"></i> by <a href="#">MAN</a>
+            2021, made with <i class="fa fa-heart heart text-danger"></i> by <a href="#">Labirin.Tech</a>
           </div>
         </div>
       </footer>

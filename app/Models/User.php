@@ -44,5 +44,8 @@ class User extends Authenticatable
     public function user_role()
     {
     	return $this->belongsTo(User_role::class);
+    }  public function data_work_section()
+    {
+    	return $this->belongsTo(Data_work_section::class);
     }
 }

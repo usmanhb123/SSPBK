@@ -1,3 +1,6 @@
+@php
+    use App\Models\Data_soal;
+@endphp
 @extends('layouts.app')
 @section('content')
  <!-- Begin Page Content -->
@@ -113,6 +116,17 @@
                             {{$item->nama}}
                         </h3>
                         <p class="card-text">{{$item->keterangan}}</p>
+                        <p>
+                            @php
+                                $jms = Data_soal::where('master_soal_id', $item->id)->count();
+                            @endphp
+                            @if ($jms == 0)
+                                Belum ada soal yang dibuat.
+                            @else
+                                
+                            Jumlah : {{$jms}} Soal.
+                            @endif
+                        </p>
                         <a href="{{url('/mastersoal/'.$item->id.'/edit')}}" class="btn btn-primary btn-rounded btn-sm">Read More & Edit</a>
                         <a href="{{url('/mastersoal/'.$item->id)}}" class="btn btn-primary btn-danger btn-round btn-sm" onclick="return confirm('Data yang sudah dihapus tidak dapat dikembalikan!')">Remove</a>
                     </div>

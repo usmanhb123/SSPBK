@@ -165,11 +165,10 @@
                                        
                                             @endforeach
                                             @if($ds->type_soal == "Jawaban Singkat")
-                                            <div class="card card-stats card-success card-round">
-                                               
-                                                <div class="card-body">
+                                           
                                                    <div class="row">
                                                         <div class="col-lg-8">
+                                                            Jawaban : 
                                                             {{$ds->kunci_jawaban}} 
 
                                                         </div>
@@ -177,10 +176,7 @@
                                                             Point benar : {{$ds->bobot_nilai}} point.
                                                         </div>
                                                     </div>
-                                               
-                                                
-                                                </div>
-                                            </div>
+                                               <br>
                                        
                                             @endif
                                             <div class="row">
@@ -204,11 +200,26 @@
                                 <div class="row">
                                    @foreach ($datasoal as $no => $dss)
                                    <div class="row col-lg-4 mb-1 mr-1">
-                                       <a href="#" class="btn btn-lg btn-success">{{$no+1}}</a>
+                                       <a href="{{asset('mastersoal/'.$dss->id.'/editsoal')}}"
+                                        @if($dss->type_soal == "Pilihan Ganda") 
+                                            class="btn btn-lg btn-success"
+                                        @endif
+                                        @if($dss->type_soal == "Essay") 
+                                            class="btn btn-lg btn-warning"
+                                        @endif
+                                        @if($dss->type_soal == "Jawaban Singkat") 
+                                            class="btn btn-lg btn-secondary"
+                                        @endif
+                                         >{{$no+1}}</a>
                                    </div>
                                    @endforeach
-
                                 </div>
+                                <h5>
+                                    Keterangan :
+                                </h5>
+                                <button class="btn btn-lg btn-success mt-1">PG</button> = Soal Pilihan Ganda
+                                <br><button class="btn btn-lg btn-warning mt-1">ES</button> = Soal Essay
+                                <br><button class="btn btn-lg btn-secondary mt-1">JS</button> = Soal Jawaban Singkat
                             </div>
                         </div>
                     </div>

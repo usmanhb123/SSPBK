@@ -31,13 +31,85 @@ class MasterSoalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function saveeditsoal(Request $request, $id)
     {
-        //
+        $file = $request->file('file');
+        
+        $tujuan_upload = 'img/media_soal';
+        if($file){  
+            $namafile = time().'_'.$file->getClientOriginalName();
+            $file->move($tujuan_upload,$namafile);
+            if($request->file_lama){
+
+                unlink(public_path('/img/media_soal/'.$request->file_lama));
+            }
+        }else{
+            $namafile = $request->file_lama;
+        }
+        Data_soal::where('id', $id)->update([
+
+        'master_soal_id' => $request->master_soal,
+        'isi_soal' => htmlspecialchars($request->isi_soal),
+        'file' => $namafile,
+        'bobot_nilai' => $request->bobot,
+        'kunci_jawaban' => $request->jawaban_benar,
+        'type_soal' => $request->type_soal
+        ]);
+        
+        if($request->type_soal == "Pilihan Ganda"){
+            Data_soal_jawaban::where('data_soal_id', $id)->delete();
+            
+            if($request->A){
+            $a = new Data_soal_jawaban;
+            $a->data_soal_id = $id;
+            $a->isi_jawaban = htmlspecialchars($request->A);
+            $a->status = "A";
+            $a->save();
+            }
+            if($request->B){
+            $b = new Data_soal_jawaban;
+            $b->data_soal_id = $id;
+            $b->isi_jawaban = htmlspecialchars($request->B);
+            $b->status = "B";
+            $b->save();
+            }
+            if($request->C){
+            $c = new Data_soal_jawaban;
+            $c->data_soal_id = $id;
+            $c->isi_jawaban = htmlspecialchars($request->C);
+            $c->status = "C";
+            $c->save();
+            }
+            if($request->D){
+            $d = new Data_soal_jawaban;
+            $d->data_soal_id = $id;
+            $d->isi_jawaban = htmlspecialchars($request->D);
+            $d->status = "D";
+            $d->save();
+            }if($request->E){
+            $e = new Data_soal_jawaban;
+            $e->data_soal_id = $id;
+            $e->isi_jawaban = htmlspecialchars($request->E);
+            $e->status = "E";
+            $e->save();
+            }
+     
+        }
+
+        $request->session()->flash('warna', 'success');
+        $request->session()->flash('status', 'Soal berhasil diedit!');
+      
+        return redirect('/mastersoal/'.$request->master_soal.'/edit');
+
     }
     public function editsoal($id)
     {
-        echo("berhasil");
+        $data['user'] =  AUTH::user();
+        $data['title'] = 'Master Soal';
+        $data['sub_menu'] = 'Settings Ujian/Test';
+        $data['soal'] = Data_soal::find($id);
+
+       return view('admin.settingsujian.editsoal', $data);
     }
     public function hapussoal(Request $request, $id)
     {
