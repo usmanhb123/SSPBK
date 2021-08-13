@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Data_work_section;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HasilTestPesertaController extends Controller
@@ -14,7 +17,14 @@ class HasilTestPesertaController extends Controller
      */
     public function index()
     {
-        //
+        $data['user'] =  AUTH::user();
+        $data['title'] = 'Hasil Test';
+        $data['sub_menu'] = 'Data Hasil Test';
+        $data['work_section'] = Data_work_section::where('is_active', 1)->get();
+
+
+        return view('admin.hasiltest.hasiltest', $data);
+
     }
 
     /**
@@ -46,7 +56,14 @@ class HasilTestPesertaController extends Controller
      */
     public function show($id)
     {
-        //
+        $data['user'] =  AUTH::user();
+        $data['title'] = 'Hasil Test';
+        $data['sub_menu'] = 'Data Hasil Test';
+        $data['peserta'] = User::find($id);
+      
+        
+        return view('admin.hasiltest.detailtest', $data);
+
     }
 
     /**

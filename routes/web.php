@@ -19,9 +19,11 @@ use App\Http\Controllers\admin\DataTokenController;
 use App\Http\Controllers\admin\DataPesertaController;
 use App\Http\Controllers\admin\DataJadwalController;
 use App\Http\Controllers\admin\EvaluasiEssayController;
+use App\Http\Controllers\admin\HasilTestPesertaController;
 // END ADMIN
 
 // Peserta
+use App\Http\Controllers\peserta\HasilTestController;
 use App\Http\Controllers\peserta\HomeController;
 use App\Http\Controllers\peserta\SeleksiMasukController;
 // End Peserta
@@ -66,6 +68,7 @@ Route::middleware(['admin', 'user'])->group(function () {
 
 Route::resource('/dashboardadmin', DashboardController::class);
 Route::resource('/dataworksection', DataWorkSectionController::class);
+Route::resource('/hasiltestpeserta', HasilTestPesertaController::class);
 Route::resource('/mastersoal', MasterSoalController::class);
 Route::resource('/datajadwal', DataJadwalController::class);
 Route::resource('/datatoken', DataTokenController::class);
@@ -79,6 +82,7 @@ Route::get('/mastersoal/{id}/hapussoal', [MasterSoalController::class, 'hapussoa
 Route::get('/datajadwal/{master_soal_id}/{data_ujian_id}', [DataJadwalController::class, 'pilihmastersoal']);
 Route::get('/datajadwal/{id}/delete', [DataJadwalController::class, 'delete']);
 Route::post('/mastersoal/saveeditsoal/{id}', [MasterSoalController::class, 'saveeditsoal']);
+Route::get('/koreksi/{id}/{id_ujian}', [EvaluasiEssayController::class, 'koreksi']);
 
 
 
@@ -92,6 +96,7 @@ Route::middleware(['user'])->group(function () {
   Route::post('/savejawaban', [SeleksiMasukController::class, 'savejawaban']);
   Route::get('/selesaiujian/{id}', [SeleksiMasukController::class, 'selesaiujian']);
   Route::resource('/home', HomeController::class);
+  Route::resource('/hasiltest', HasilTestController::class);
   Route::resource('/seleksitestmasuk', SeleksiMasukController::class);
   Route::get('/ujianberlangsung/{id}', [SeleksiMasukController::class, 'pengerjaanujian']);
   Route::resource('/user', UserController::class);

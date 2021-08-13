@@ -64,7 +64,7 @@
                                                <td>{{$no+1}}</td>
                                                <td>{{$item->users->name}}</td>
                                                <td>{{$item->nilai_sementara}} point</td>
-                                               <td><a href="#" class="btn btn-primary btn-round btn-sm">Evaluasi Jawaban Essay</a> </td>
+                                               <td><a href="{{url('/koreksi/'.$item->users_id.'/'.$data_jadwal->id)}}" class="btn btn-primary btn-round btn-sm">Evaluasi Jawaban Essay</a> </td>
                                            </tr>
                    
                                        @endforeach
@@ -73,7 +73,7 @@
                                            <td>{{$no+1}}</td>
                                            <td>{{$s->users->name}}</td>
                                            <td>{{$s->nilai_sementara}} point</td>
-                                           <td>{{$s->nilai_akhir}}</td>
+                                           <td><a href="{{url('/koreksi/'.$s->users_id.'/'.$data_jadwal->id)}}">{{$s->nilai_akhir}}</a></td>
                                        </tr>
                
                                    @endforeach

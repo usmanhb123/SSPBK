@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\peserta;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class HasilTestController extends Controller
@@ -14,7 +15,11 @@ class HasilTestController extends Controller
      */
     public function index()
     {
-        //
+        $data['user'] =  AUTH::user();
+        $data['title'] = 'Hasil Test';
+        $data['sub_menu'] = '0';
+
+       return view('peserta.hasiltest', $data);
     }
 
     /**

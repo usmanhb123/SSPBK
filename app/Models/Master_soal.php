@@ -10,4 +10,8 @@ class Master_soal extends Model
     
     protected $table = 'master_soal';
     use HasFactory;
+    public function data_soal()
+    {
+    	return $this->hasMany(Data_soal::class);
+    }
 }
