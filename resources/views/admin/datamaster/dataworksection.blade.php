@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="modal-body">
                                       
-                                        <form action="{{url('/datajobdesk')}}" method="POST">
+                                        <form action="{{url('/dataworksection')}}" method="POST">
                                             @csrf
                                             @method("POST")
                                             <div class="row">

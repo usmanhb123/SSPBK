@@ -58,7 +58,7 @@ class DataWorkSectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         Data_work_section::where('id', $id)->delete();
         $request->session()->flash('warna', 'success');
