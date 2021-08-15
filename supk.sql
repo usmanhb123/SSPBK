@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 13, 2021 at 06:33 AM
+-- Generation Time: Aug 14, 2021 at 12:02 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.15
 
@@ -69,7 +69,7 @@ CREATE TABLE `data_nilai_ujian` (
 --
 
 INSERT INTO `data_nilai_ujian` (`id`, `data_ujian_id`, `users_id`, `nilai_sementara`, `nilai_akhir`, `selesai`, `created_at`, `updated_at`) VALUES
-(4, 1628628308, 1628514893, 3, NULL, 1, '2021-08-12 07:38:28', '2021-08-12 07:38:28');
+(4, 1628628308, 1628514893, 3, 99, 1, '2021-08-12 07:38:28', '2021-08-13 17:45:08');
 
 -- --------------------------------------------------------
 
@@ -253,8 +253,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nik`, `name`, `image`, `email`, `email_verified_at`, `telepon`, `password`, `alamat`, `maps`, `user_role_id`, `data_work_section_id`, `is_active`, `forgot`, `mode_gelap`, `created_at`, `updated_at`) VALUES
-(3, NULL, 'admin', 'user.webp', 'admin@gmail.com', '1', '0838371444', '$2y$10$/50MXxCKZpi1XjHqKWh3MOldLpj6wcRy4wFjJkXd85aVQyHk3pa7e', 'desa suci blok tenggeran mundu cirebon', NULL, 1, 0, 1, NULL, 2, '2020-10-18 14:23:15', '2021-06-29 06:59:38'),
-(1628514893, '2002002002000', 'peserta', 'user.webp', 'peserta@gmail.com', '1628514893', '0898989898', '$2y$10$sEqBekeUxRi55b3fsoZsHOwwdQgVPIn5r2gFXLAOwd0ev2r3yBRia', 'alamat', NULL, 2, 1, 1, NULL, 2, '2021-08-10 00:14:53', '2021-08-12 02:04:27');
+(3, NULL, 'Administrator', 'user.webp', 'admin@gmail.com', '1', '0838371444', '$2y$10$/50MXxCKZpi1XjHqKWh3MOldLpj6wcRy4wFjJkXd85aVQyHk3pa7e', 'desa suci blok tenggeran mundu cirebon', NULL, 1, 0, 1, NULL, 2, '2020-10-18 14:23:15', '2021-06-29 06:59:38'),
+(1628514893, '2002002002000', 'peserta', 'user.webp', 'peserta@gmail.com', '1628514893', '0898989898', '$2y$10$sEqBekeUxRi55b3fsoZsHOwwdQgVPIn5r2gFXLAOwd0ev2r3yBRia', 'alamat', NULL, 2, 1, 1, NULL, 2, '2021-08-10 00:14:53', '2021-08-12 02:04:27'),
+(1628524602, NULL, 'Manager', 'user.webp', 'manager@gmail.com', '1', '0838371444', '$2y$10$/50MXxCKZpi1XjHqKWh3MOldLpj6wcRy4wFjJkXd85aVQyHk3pa7e', 'desa suci blok tenggeran mundu cirebon', NULL, 3, 0, 1, NULL, 2, '2020-10-18 14:23:15', '2021-06-29 06:59:38');
 
 -- --------------------------------------------------------
 
@@ -277,7 +278,8 @@ CREATE TABLE `user_access_menu` (
 INSERT INTO `user_access_menu` (`id`, `user_role_id`, `user_menu_id`, `created_at`, `updated_at`) VALUES
 (153, 1, 6, '2021-08-09 05:44:35', '2021-08-09 05:44:35'),
 (154, 1, 26, '2021-08-09 05:44:35', '2021-08-09 05:44:35'),
-(155, 2, 27, '2021-08-11 21:07:32', '2021-08-11 21:07:32');
+(155, 2, 27, '2021-08-11 21:07:32', '2021-08-11 21:07:32'),
+(156, 3, 14, '2021-08-13 23:39:33', '2021-08-13 23:39:33');
 
 -- --------------------------------------------------------
 
@@ -382,7 +384,10 @@ INSERT INTO `user_sub_menu` (`id`, `user_menu_id`, `title`, `url`, `icon`, `crea
 (286, 26, 'Data Token', '/datatoken', 'fas fa-fax', '2021-08-10 00:21:57', '2021-08-10 00:23:23'),
 (287, 27, 'Home', '/home', 'flaticon-home', '2021-08-11 21:07:11', '2021-08-11 22:33:41'),
 (288, 27, 'Seleksi Masuk', '/seleksitestmasuk', 'far fa-edit', '2021-08-11 22:31:00', '2021-08-11 22:31:00'),
-(289, 27, 'Hasil Test', '/hasiltest', 'far fa-copy', '2021-08-13 15:23:28', '2021-08-13 15:23:28');
+(289, 27, 'Hasil Test', '/hasiltest', 'far fa-copy', '2021-08-13 15:23:28', '2021-08-13 15:23:28'),
+(290, 14, 'Dashboard', '/dashboard', 'fas fa-tachometer-alt', '2021-08-13 23:40:31', '2021-08-13 23:40:31'),
+(291, 14, 'Data Peserta', '/datapesertamnj', 'fas fa-users', '2021-08-13 23:41:07', '2021-08-13 23:41:07'),
+(292, 14, 'Data Hasil Test', '/datahasiltestmnj', 'fas fa-copy', '2021-08-13 23:41:40', '2021-08-13 23:41:40');
 
 --
 -- Indexes for dumped tables
@@ -522,13 +527,13 @@ ALTER TABLE `master_soal`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1628524602;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1628524603;
 
 --
 -- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
@@ -552,7 +557,7 @@ ALTER TABLE `user_subsub_menu`
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=290;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=293;
 
 --
 -- Constraints for dumped tables

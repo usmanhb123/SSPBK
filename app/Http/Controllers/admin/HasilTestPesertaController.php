@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Data_work_section;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ExportUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -74,7 +76,9 @@ class HasilTestPesertaController extends Controller
      */
     public function edit($id)
     {
-        //
+            $role =Data_work_section::find($id);
+            $date = date('d-M-Y');
+            return Excel::download(new ExportUser($id), 'Work_section _'.$date.'_'.$role->nama_posisi.'.xlsx');
     }
 
     /**

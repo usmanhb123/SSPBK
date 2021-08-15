@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Auth;
+use App\Models\Data_work_section;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -19,6 +20,7 @@ class DashboardController extends Controller
         $data['user'] =  AUTH::user();
          $data['title'] = 'Dashboard';
          $data['sub_menu'] = '0';
+         $data['data_ws'] = Data_work_section::where('is_active', 1)->get();
 
         return view('admin.dashboard.dashboard', $data);
     }

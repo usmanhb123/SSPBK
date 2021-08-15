@@ -42,7 +42,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex align-items-center">
-                        <h4 class="card-title">Data Jadwal Ujian/Test</h4>
+                        <h4 class="card-title">Data Jadwal Ujian/Test {{$find->nama_posisi}}</h4>
                         <button class="btn btn-primary btn-round btn-sm ml-auto" data-toggle="modal" data-target="#addRowModal">
                             <i class="fa fa-plus"></i>
                             Data Jadwal
@@ -152,7 +152,6 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Test</th>
-                                    <th>Work Section</th>
                                     <th>Tanggal Ujian</th>
                                     <th>Durasi Ujian</th>
                                     <th>Nilai Minimum Kelulusan</th>
@@ -169,7 +168,6 @@
                                 <tr>
                                     <td>{{$no+1}}</td>
                                     <td>{{$item->nama_ujian}}</td>
-                                    <td>{{$item->data_work_section->nama_posisi}}</td>
                                     <td>{{$item->tanggal_mulai}} s/d {{$item->tanggal_selesai}}</td>
                                     <td>{{$item->waktu_ujian}} menit</td>
                                     <td>{{$item->nilai_minimum}} point</td>

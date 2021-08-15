@@ -69,10 +69,18 @@
                          <div class="tab-pane fade" id="v-pills-{{$item->id}}" role="tabpanel" aria-labelledby="v-pills-{{$item->id}}-tab">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <h2>
-                                        {{$item->nama_posisi}}
+                                    <div class="row">
+                                        <div class="col-lg-8">
 
-                                    </h2>
+                                            <h2>
+                                                {{$item->nama_posisi}}
+        
+                                            </h2>
+                                        </div>
+                                        <div class="col-lg-4 text-right">
+                                            <a href="{{url('/hasiltestpeserta/'.$item->id.'/edit')}}" class="btn btn-secondary btn-sm btn-round"><i class="fas fa-print"></i> Print</a>
+                                        </div>
+                                    </div>
                                 @php
                                     $cek = User::where('data_work_section_id', $item->id)->first();
                                 @endphp

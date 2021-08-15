@@ -31,9 +31,15 @@ class DataJadwalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function filter($id)
     {
-        //
+        $data['user'] =  AUTH::user();
+        $data['title'] = 'Jadwal Ujian/Test';
+        $data['sub_menu'] = 'Settings Ujian/Test';
+        $data['work_section'] = Data_work_section::where('is_active', 1)->get();
+        $data['find'] = Data_work_section::find($id);
+        $data['data_ujian'] = Data_ujian::orderBy('id', 'desc')->where('data_work_section_id', $id)->get();
+        return view('admin.settingsujian.filterjadwal', $data);
     }
 
     /**

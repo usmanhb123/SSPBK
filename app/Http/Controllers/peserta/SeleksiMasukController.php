@@ -10,9 +10,7 @@ use App\Models\Data_token;
 use App\Models\Data_nilai_ujian;
 use App\Models\Master_soal;
 use App\Models\Data_soal;
-
 use Illuminate\Http\Request;
-
 
 class SeleksiMasukController extends Controller
 {
@@ -47,7 +45,9 @@ class SeleksiMasukController extends Controller
             return redirect()->back();
             }
         }
-    $data['user'] =  AUTH::user();
+        $data['user'] =  AUTH::user();
+        $user =  AUTH::user();
+
         $ceksession = $request->session()->get('durasi');
         if($ceksession == NULL){
 
@@ -61,9 +61,25 @@ class SeleksiMasukController extends Controller
         $data_ujian = Data_ujian::find($id);
         $data['data_ujian'] = Data_ujian::find($id);
         $master_soal = Master_soal::find($data_ujian->master_soal_id);
-        $data['soal'] = Data_soal::where('master_soal_id', $master_soal->id)->paginate(1);
-        $data['soalall'] = Data_soal::where('master_soal_id', $master_soal->id)->get();
-       return view('peserta.ujian.pengerjaan', $data);
+        if($data_ujian->acak_soal == NULL){
+
+            $data['soal'] = Data_soal::where('master_soal_id', $master_soal->id)->paginate(1);
+            $data['soalall'] = Data_soal::where('master_soal_id', $master_soal->id)->get();
+        }else{
+            $cak = $user->id % 1;
+            if($cak == 1){
+
+                $data['soal'] = Data_soal::where('master_soal_id', $master_soal->id)->orderBy('id', 'asc')->paginate(1);
+                $data['soalall'] = Data_soal::where('master_soal_id', $master_soal->id)->orderBy('id', 'asc')->get();
+            }else{
+
+                $data['soal'] = Data_soal::where('master_soal_id', $master_soal->id)->orderBy('id', 'desc')->paginate(1);
+                $data['soalall'] = Data_soal::where('master_soal_id', $master_soal->id)->orderBy('id', 'desc')->get();
+            }
+
+        }
+       
+        return view('peserta.ujian.pengerjaan', $data);
     }
 
     /**

@@ -2,14 +2,13 @@
 
 namespace App\Exports;
 
-use App\Models\Data_jadwal_operasi;
-use App\Models\Detail_jadwal_operasi;
+use App\Models\Data_work_section;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 
 use Maatwebsite\Excel\Concerns\Exportable;
 
-class exportLaporanOperasi implements FromView
+class ExportUser implements FromView
 {
     use Exportable;
 
@@ -22,8 +21,8 @@ class exportLaporanOperasi implements FromView
     public function view(): View
     {
         $data['time'] = date('Y-m-d');
-        $data['data_pasien'] = Data_jadwal_operasi::find($this->id);
-        $data['table'] = Detail_jadwal_operasi::where('data_jadwal_operasi_id', $this->id)->get();
-        return view('exports.laporan_operasi', $data);
+        $data['data_ws'] = Data_work_section::find($this->id);
+
+        return view('exports.user_ws', $data);
     }
 }

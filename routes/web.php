@@ -79,10 +79,11 @@ Route::post('/mastersoal/addessay', [MasterSoalController::class, 'essay']);
 Route::post('/mastersoal/addjawabansingkat', [MasterSoalController::class, 'jawabansingkat']);
 Route::get('/mastersoal/{id}/editsoal', [MasterSoalController::class, 'editsoal']);
 Route::get('/mastersoal/{id}/hapussoal', [MasterSoalController::class, 'hapussoal']);
-Route::get('/datajadwal/{master_soal_id}/{data_ujian_id}', [DataJadwalController::class, 'pilihmastersoal']);
-Route::get('/datajadwal/{id}/delete', [DataJadwalController::class, 'delete']);
 Route::post('/mastersoal/saveeditsoal/{id}', [MasterSoalController::class, 'saveeditsoal']);
 Route::get('/koreksi/{id}/{id_ujian}', [EvaluasiEssayController::class, 'koreksi']);
+Route::get('/datajadwal/{master_soal_id}/{data_ujian_id}', [DataJadwalController::class, 'pilihmastersoal']);
+Route::get('/datajadwal/{id}/delete', [DataJadwalController::class, 'delete']);
+Route::get('/filterjadwal/{id}', [DataJadwalController::class, 'filter']);
 
 
 
@@ -93,7 +94,10 @@ Route::get('/koreksi/{id}/{id_ujian}', [EvaluasiEssayController::class, 'koreksi
 //Route Groups User
 
 Route::middleware(['user'])->group(function () {
+  Route::resource('/datahasiltestmnj', HasilTestPesertaController::class);
+  Route::resource('/dashboard', DashboardController::class);
   Route::post('/savejawaban', [SeleksiMasukController::class, 'savejawaban']);
+  Route::resource('/datapesertamnj', DataPesertaController::class);
   Route::get('/selesaiujian/{id}', [SeleksiMasukController::class, 'selesaiujian']);
   Route::resource('/home', HomeController::class);
   Route::resource('/hasiltest', HasilTestController::class);
