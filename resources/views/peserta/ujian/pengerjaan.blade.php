@@ -58,7 +58,7 @@
                                         <input type="hidden" name="data_soal_id" value="{{$ds->id}}">
                                         <input type="hidden" name="nomor" value="{{$soal->currentPage()+1}}">
                                         @php
-                                            $jawaban = Data_jawaban_ujian::where('data_soal_id', $ds->id)->where('users_id', $user->id)->first();
+                                            $jawaban = Data_jawaban_ujian::where('data_soal_id', $ds->id)->where('data_ujian_id', $data_ujian->id)->where('users_id', $user->id)->first();
                                         @endphp
                                         @if($ds->type_soal == "Essay")
                                         <div class="form-group">
@@ -122,7 +122,7 @@
                             @php
                                 $page = $no+1;
                            
-                             $ll = Data_jawaban_ujian::where('data_soal_id', $item->id)->where('users_id', $user->id)->first();
+                             $ll = Data_jawaban_ujian::where('data_soal_id', $item->id)->where('data_ujian_id', $data_ujian->id)->where('users_id', $user->id)->first();
                          @endphp
                                  <a href="{{url('/ujianberlangsung/'.$id.'?page='.$page)}}" @if ($ll !== NULL) class="btn btn-primary col-sm-3 mx-1 mt-1"
                                     @else 

@@ -92,10 +92,10 @@ class SeleksiMasukController extends Controller
     {
         $token = Data_token::where('created_at', '!=', NULL)->first();
         $ujian = Data_ujian::find($request->id);
-        $waktu = $ujian->waktu_ujian * 60;
-        $time= time() + (60 * 60) + $waktu;
-        $p = date('Y-m-d h:i:s', $time);
-
+        $waktu = $ujian->waktu_ujian ;
+        $time= ($waktu * 60) + time() - 39600;
+        $p = date('Y-m-d H:i:s', $time);
+        // dd($p);
         if($token->token == $request->token){
 
             $request->session()->put('durasi', $p);
@@ -144,15 +144,21 @@ class SeleksiMasukController extends Controller
         $poinjs = 0;
         foreach($soalpg as $as){
             $jawaban = Data_jawaban_ujian::where('data_soal_id', $as->id)->where('users_id', AUTH::user()->id)->where('data_ujian_id', $id)->first(); 
-            if($jawaban->data_soal_jawaban->status == $as->kunci_jawaban){
-             $poinpg = $as->bobot_nilai + $poinpg;
-            } 
+            if($jawaban){
+
+                if($jawaban->data_soal_jawaban->status == $as->kunci_jawaban){
+                 $poinpg = $as->bobot_nilai + $poinpg;
+                } 
+            }
          }
          foreach($soaljs as $js){
             $jawaban = Data_jawaban_ujian::where('data_soal_id', $js->id)->where('users_id', AUTH::user()->id)->where('data_ujian_id', $id)->first(); 
-            if($jawaban->jawaban_essay == $js->kunci_jawaban){
-             $poinjs = $js->bobot_nilai + $poinjs;
-            } 
+            if($jawaban){
+
+                if($jawaban->jawaban_essay == $js->kunci_jawaban){
+                 $poinjs = $js->bobot_nilai + $poinjs;
+                } 
+            }
          }
          $poinsementara = $poinpg + $poinjs;
 
